@@ -76,24 +76,42 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* background: url(#) no-repeat;
-  background-size: cover;
-  background-position: center; */
+  flex-direction: column;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.content {
+  margin-top: 75px;
 }
 
 .willGrow p {
   transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  transform-origin: center;
+  cursor: pointer;
 }
 
-.willGrow:hover p {
-  transform: scale(1.5);
+.willGrow p:hover {
+  transform: scale(1.3);
+}
+
+.placeholder {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #555;
 }
 
 .vtuber-container {
   position: fixed;
-  bottom: 20px; /* Adjust position as needed */
-  right: 20px;  /* Adjust position as needed */
-  width: 150px; /* Adjust size as needed */
+  bottom: 20px;
+  right: 20px;
+  width: 250px;
   height: auto;
 }
 
