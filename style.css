@@ -111,11 +111,43 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 250px;
+  width: 300px;
   height: auto;
 }
 
 .vtuber-container video {
   width: 100%;
   height: 100%;
+}
+
+.star-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensures the stars don't interfere with other interactions */
+  overflow: hidden;
+  z-index: -1; /* Position stars behind other content */
+}
+
+.star {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+  animation: moveStar 5s linear infinite;
+  box-shadow: 0 0 8px yellow; /* Add glow effect */
+}
+
+@keyframes moveStar {
+  from {
+    transform: translateY(-100px) translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh) translateX(-100vw);
+    opacity: 0;
+  }
 }
