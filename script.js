@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
     star.style.left = initialX + 'px';
     star.style.top = initialY + 'px';
 
-    let dx = (Math.random() - 0.5) * 4;
-    let dy = (Math.random() - 0.5) * 4;
+    let dx = (Math.random() - 0.5) * 1; //4 initially
+    let dy = (Math.random() - 0.5) * 1;
 
     starContainer.appendChild(star);
 
@@ -34,11 +34,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (distance < 30) { // Adjust collision distance as needed
         // Play sound
-        starSound.play();
+        // starSound.play();
+        const soundEffect = new Audio("media/star-sound.mp3");
+        soundEffect.play();
 
         // Change direction of the star
-        dx = (starX - mouseX) / 10;
-        dy = (starY - mouseY) / 10;
+        dx = (starX - mouseX) / 5; //10 initially
+        dy = (starY - mouseY) / 5;
       }
 
       star.style.left = (star.offsetLeft + dx) + 'px';
