@@ -3,6 +3,16 @@
   padding: 0;
   font-family: "Orbitron";
   box-sizing: border-box;
+  overflow: auto;
+}
+
+body {
+  background-image: url('media/Background.png');
+  background-size: contain; /* Ensures the width is bound to the viewport */
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+  background-attachment: scroll; /* Allows the image to scroll vertically */
+  background-position: top center; /* Centers the image horizontally */
 }
 
 header {
@@ -149,4 +159,8 @@ body {
     transform: translateY(100vh) translateX(-100vw) rotate(360deg);
     opacity: 0;
   }
+}
+
+.hidden {
+  display: none;
 }

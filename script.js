@@ -65,4 +65,57 @@ document.addEventListener("DOMContentLoaded", function() {
     source.src = videoSrc;
     video.load();
   };
+
+  document.getElementById('toggleButton').addEventListener('click', function () {
+    const contentElements = document.querySelectorAll('.content');
+    contentElements.forEach(element => {
+      element.classList.toggle('hidden');
+    });
+  });
 });
+
+function toggleContent() {
+  const contentContainer = document.querySelector('.content-container');
+  const toggleButton = document.getElementById('toggleButton');
+
+  if (contentContainer.classList.contains('hidden')) {
+    contentContainer.classList.remove('hidden');
+    toggleButton.textContent = 'Hide Topics';
+  } else {
+    contentContainer.classList.add('hidden');
+    toggleButton.textContent = 'Show Topics';
+  }
+}
+
+function showButtonA() {
+  const buttonA = document.getElementById("buttonA");
+  buttonA.style.display = "inline"; // Makes button A visible
+
+  // Change the video source
+  const video = document.getElementById("vtuberVideo");
+  const source = video.getElementsByTagName("source")[0];
+
+  // Set the first video source
+  source.src = "media/what-is-bmma.webm";
+  video.muted = false;
+  video.loop = false; // Ensure the video does not loop
+  video.load(); // Reload the video with the new source
+  video.play(); // Play the video
+
+  // Remove any existing 'onended' event listener to avoid duplicates
+  video.onended = null;
+
+  // Add an event listener to switch back to the idle video after the first video ends
+  video.onended = function () {
+    console.log("First video ended. Switching to idle video."); // Debugging log
+    source.src = "media/vtuber-idle-animation.mp4";
+    video.muted = true;
+    video.load();
+    video.play();
+  };
+}
+
+function showButtonB() {
+  const buttonB = document.getElementById("buttonB");
+  buttonB.style.display = "inline"; // Makes button B visible
+}
