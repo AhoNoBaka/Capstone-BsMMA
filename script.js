@@ -87,9 +87,15 @@ function toggleContent() {
   }
 }
 
-function showButtonA() {
-  const buttonA = document.getElementById("buttonA");
-  buttonA.style.display = "inline"; // Makes button A visible
+function pressButtonX() {
+  const buttonX = document.getElementById("buttonX");
+  buttonX.src = "media/Star-Pressed.png"; // Change the image to 'Star-Pressed.png'
+  showButton("A"); // Show button A
+
+  // Show the "What is BMMA?" section
+  const infoText = document.getElementById("infoText");
+  infoText.style.display = "block"; // Make it visible
+  infoText.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
 
   // Change the video source
   const video = document.getElementById("vtuberVideo");
@@ -98,24 +104,123 @@ function showButtonA() {
   // Set the first video source
   source.src = "media/what-is-bmma.webm";
   video.muted = false;
-  video.loop = false; // Ensure the video does not loop
+  video.loop = false; // Set to false to allow the video to end
   video.load(); // Reload the video with the new source
   video.play(); // Play the video
 
-  // Remove any existing 'onended' event listener to avoid duplicates
-  video.onended = null;
-
   // Add an event listener to switch back to the idle video after the first video ends
   video.onended = function () {
-    console.log("First video ended. Switching to idle video."); // Debugging log
     source.src = "media/vtuber-idle-animation.mp4";
     video.muted = true;
+    video.loop = true; // Loop the idle animation
     video.load();
     video.play();
   };
 }
 
-function showButtonB() {
-  const buttonB = document.getElementById("buttonB");
-  buttonB.style.display = "inline"; // Makes button B visible
+function pressButton(buttonId, textId) {
+  const button = document.getElementById(`button${buttonId}`);
+  
+  // Determine the correct pressed image based on the button type
+  if (button.src.includes("Star-Start.png")) {
+    button.src = "media/Star-Pressed.png"; // Change to 'Star-Pressed.png'
+  } else if (button.src.includes("Diamond-Start.png")) {
+    button.src = "media/Diamond-Pressed.png"; // Change to 'Diamond-Pressed.png'
+  }
+
+  showButton(String.fromCharCode(buttonId.charCodeAt(0) + 1)); // Show the next button
+
+  // Show the corresponding text
+  const textElement = document.getElementById(textId);
+  textElement.style.display = "block"; // Make it visible
+  textElement.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
+}
+
+// Example usage for button A
+function pressButtonA() {
+  pressButton("A", "curriculumText");
+}
+
+function pressButtonB() {
+  pressButton("B", "yearOne");
+}
+
+function pressButtonC() {
+  pressButton("C", "yearTwo");
+}
+
+function pressButtonD() {
+  pressButton("D", "yearThree");
+}
+
+function pressButtonE() {
+  pressButton("E", "yearFour");
+}
+
+function pressButtonF() {
+  pressButton("F", "skillsText");
+}
+
+function pressButtonG() {
+  pressButton("G", "skillOne");
+}
+
+function pressButtonH() {
+  pressButton("H", "skillTwo");
+}
+
+function pressButtonI() {
+  pressButton("I", "skillThree");
+}
+
+function pressButtonJ() {
+  pressButton("J", "skillFour");
+}
+
+function pressButtonK() {
+  pressButton("K", "futureProfession");
+}
+
+function pressButtonL() {
+  pressButton("L", "professionOne");
+}
+
+function pressButtonM() {
+  pressButton("M", "professionTwo");
+}
+
+function pressButtonN() {
+  const buttonN = document.getElementById("buttonN");
+  buttonN.src = "media/Diamond-Pressed.png"; // Change the image to 'Diamond-Pressed.png'
+
+  const professionThree = document.getElementById("professionThree");
+  professionThree.style.display = "block"; // Make it visible
+  professionThree.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
+  const buttonO = document.getElementById("buttonO");
+  buttonO.style.display = "inline"; // Ensure button O is visible
+}
+
+function pressButtonO() {
+  const buttonO = document.getElementById("buttonO");
+  buttonO.src = "media/Diamond-Pressed.png"; // Change the image to 'Diamond-Pressed.png'
+
+  const thankYou = document.getElementById("thankYou");
+  thankYou.style.display = "block"; // Make it visible
+  thankYou.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
+}
+
+function showButton(buttonId) {
+  const button = document.getElementById(`button${buttonId}`);
+  button.style.display = "inline"; // Makes the button visible
+}
+
+function showInfoText(textId) {
+  const allInfoTexts = document.querySelectorAll('.info-text');
+  allInfoTexts.forEach(text => {
+    text.style.display = 'none'; // Hide all other info-text elements
+  });
+
+  const textElement = document.getElementById(textId);
+  textElement.style.display = 'block'; // Show the selected info-text
+  textElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to the visible section
 }

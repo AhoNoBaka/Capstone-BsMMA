@@ -7,15 +7,6 @@
   <title>Capstone</title>
   <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <style>
-    #buttonA {
-      display: none; /* Initially hides button A */
-    }
-
-    #buttonB {
-      display: none; /* Initially hides button B */
-    }
-  </style>
 </head>
 
 <body>
@@ -27,39 +18,24 @@
     </nav>
   </header>
 
-  <button id="buttonX" onclick="showButtonA()">Button X</button>
-  <button id="buttonA" onclick="showButtonB()">Button A</button>
-  <button id="buttonB">Button B</button>
-
-  <!--<div class="content-container">
-    <div class="content">
-      <h1 class="willGrow" onclick="changeVideo('media/vtuber-explaining.mp4')">
-        <p>Topic 1</p>
-      </h1>
-      <p class="placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.</p>
-    </div>
-
-    <div class="content">
-      <h1 class="willGrow" onclick="changeVideo('media/vtuber-explaining.mp4')">
-        <p>Topic 1</p>
-      </h1>
-      <p class="placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.</p>
-    </div>
-
-    <div class="content">
-      <h1 class="willGrow" onclick="changeVideo('media/vtuber-explaining.mp4')">
-        <p>Topic 2</p>
-      </h1>
-      <p class="placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.</p>
-    </div>
-
-    <div class="content">
-      <h1 class="willGrow" onclick="changeVideo('media/vtuber-explaining.mp4')">
-        <p>Topic 3</p>
-      </h1>
-      <p class="placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.</p>
-    </div>
-  </div>-->
+  <div class="button-alignment">
+    <img id="buttonX" src="media/Star-Start.png" alt="Button X" onclick="pressButtonX()" style="cursor: pointer; height: auto; margin-bottom: 20em;">
+    <img id="buttonA" src="media/Star-Start.png" alt="Button A" onclick="pressButtonA()" style="cursor: pointer; height: auto; display: none; margin-bottom: 4em;">
+    <img id="buttonB" src="media/Diamond-Start.png" alt="Button B" onclick="pressButtonB()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonC" src="media/Diamond-Start.png" alt="Button C" onclick="pressButtonC()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonD" src="media/Diamond-Start.png" alt="Button D" onclick="pressButtonD()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonE" src="media/Diamond-Start.png" alt="Button E" onclick="pressButtonE()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonF" src="media/Star-Start.png" alt="Button F" onclick="pressButtonF()" style="cursor: pointer; height: auto; display: none; margin-bottom: 4.7em;">
+    <img id="buttonG" src="media/Diamond-Start.png" alt="Button G" onclick="pressButtonG()" style="cursor: pointer; height: auto; display: none; margin-bottom: 1em;">
+    <img id="buttonH" src="media/Diamond-Start.png" alt="Button H" onclick="pressButtonH()" style="cursor: pointer; height: auto; display: none; margin-bottom: 1em;">
+    <img id="buttonI" src="media/Diamond-Start.png" alt="Button I" onclick="pressButtonI()" style="cursor: pointer; height: auto; display: none; margin-bottom: 1em;">
+    <img id="buttonJ" src="media/Diamond-Start.png" alt="Button J" onclick="pressButtonJ()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonK" src="media/Star-Start.png" alt="Button K" onclick="pressButtonK()" style="cursor: pointer; height: auto; display: none; margin-bottom: 0.5em;">
+    <img id="buttonL" src="media/Diamond-Start.png" alt="Button L" onclick="pressButtonL()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonM" src="media/Diamond-Start.png" alt="Button M" onclick="pressButtonM()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonN" src="media/Diamond-Start.png" alt="Button N" onclick="pressButtonN()" style="cursor: pointer; height: auto; display: none;">
+    <img id="buttonO" src="media/Diamond-Start.png" alt="Button O" onclick="pressButtonO()" style="cursor: pointer; height: auto; display: none;">
+  </div>
 
   <div class="vtuber-container">
     <video id="vtuberVideo" autoplay loop muted>
@@ -69,10 +45,107 @@
   </div>
 
   <div class="star-container"></div>
+  
+  <div class="info-text-container">
+    <!-- Hero Banner -->
+    <div class="section hero-banner">
+      <div class="info-text" id="infoText" style="display: none;">
+        <h1>What is BMMA?</h1>
+        <p>
+          Bachelor of Multimedia Arts is a four-year undergraduate course that combines art with modern technology and teaches skills and knowledge that is often used in producing content in modern media platforms. This program equips students with essential skills in graphic design, animation, video production, photography, and interactive media, preparing them for careers in advertising, film, and digital marketing, and other multimedia-related firms.
+        </p>
+      </div>
+    </div>
+
+    <!-- Curriculum Section -->
+    <div class="section curriculum">
+      <div class="info-text" id="curriculumText">
+        <h1>The Curriculum</h1>
+      </div>
+      <div class="info-text" id="yearOne">
+        <h1>1st Year</h1>
+        <p>Drawing 1 and 2, Anatomy, Perspective, Values</p>
+      </div>
+      <div class="info-text" id="yearTwo">
+        <h1>2nd Year</h1>
+        <p>
+          2D Animation, 3D Modelling, and 3D Animation
+          <br>
+          Animation techniques, in-betweening, 3D modelling and animation on Blender
+        </p>
+      </div>
+      <div class="info-text" id="yearThree">
+        <h1>3rd Year</h1>
+        <p>Photography and Film
+          <br>
+          Composition, Proper use of Aperture, Iso and Shutter Speed, Color Grading
+        </p>
+      </div>
+      <div class="info-text" id="yearFour">
+        <h1>4th Year</h1>
+        <p>Audio and Video Editing
+          <br>
+          Foley, Editing Dialogue, Mixing, and Mastering
+        </p>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section skills">
+      <div class="info-text" id="skillsText">
+        <h1>Skills you can learn in BMMA</h1>
+      </div>
+      <div class="info-text" id="skillOne">
+        <h2>Photography</h2>
+      </div>
+      <div class="info-text" id="skillTwo">
+        <h2>Digital Drawing</h2>
+      </div>
+      <div class="info-text" id="skillThree">
+        <h2>Graphic Design, 3D modeling</h2>
+      </div>
+      <div class="info-text" id="skillFour">
+        <h2>3D modeling</h2>
+      </div>
+    </div>
+
+    <!-- Future Professions Section -->
+    <div class="section future-professions">
+      <div class="info-text" id="futureProfession">
+        <h1>Future Professions</h1>
+      </div>
+      <div class="info-text" id="professionOne">
+        <h1>Photographer, Filmmaker</h1>
+        <p>
+          The program allows students to learn filmmaking and photography skills, perfect for those who want to work in television or film.
+        </p>
+      </div>
+      <div class="info-text" id="professionTwo">
+        <h1>Illustrator, Graphic Designer</h1>
+        <p>
+          Students learn Graphic design and illustration skills fit for advertising and animation.
+        </p>
+      </div>
+      <div class="info-text" id="professionThree">
+        <h1>Creative Director</h1>
+        <p>
+          The cumulative skills that BMMA students acquire allow them to have input in the
+          <br>
+           creative vision and direction of a project.
+        </p>
+      </div>
+    </div>
+
+    <div class="info-text" id="thankYou" style="display: none; left: 150px;">
+      <h1>Thank you for you time!</h1>
+      <p>Hope we see you soon ^_^</p>
+    </div>
+  </div>
 
   <audio id="starSound">
     <source src="media/star-sound.mp3" type="audio/mp3">
   </audio>
+
 
   <script src="script.js"></script>
 </body>

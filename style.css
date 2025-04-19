@@ -1,13 +1,32 @@
+/* Prevent text selection */
+* {
+  user-select: none; /* Disable text selection */
+  -webkit-user-select: none; /* For Safari */
+  -ms-user-select: none; /* For older IE versions */
+}
+
 * {
   margin: 0;
   padding: 0;
   font-family: "Orbitron";
   box-sizing: border-box;
-  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+/* Remove focus outlines */
+*:focus {
+  outline: none; /* Remove focus outline */
+}
+
+img {
+  -webkit-user-drag: none; /* For Safari and Chrome */
+  user-drag: none;
 }
 
 body {
-  background-image: url('media/Background.png');
+  overflow-y: auto; /* Allow vertical scrolling */
+  padding-top: 80px;
+  background-image: url('media/BG-grid.png');
   background-size: contain; /* Ensures the width is bound to the viewport */
   background-repeat: no-repeat;
   background-size: 100vw auto;
@@ -16,7 +35,7 @@ body {
 }
 
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,20 +43,23 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightgray;
 }
 
 
 .logo {
   font-size: 2em;
-  color: #000;
+  color: white;
   user-select: none;
+}
+
+.navigation {
+  color: white;
 }
 
 .navigation a {
   position: relative;
   font-size: 1.1em;
-  color: #000;
+  color: white;
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
@@ -50,7 +72,7 @@ header {
   bottom: -6px;
   width: 100%;
   height: 3px;
-  background: #000;
+  background: white;
   border-radius: 5px;
   transform-origin: right;
   transform: scaleX(0);
@@ -66,12 +88,12 @@ header {
   width: 130px;
   height: 50px;
   background: transparent;
-  border: 2px solid #000;
+  border: 2px solid white;
   outline: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1.1em;
-  color: #000;
+  color: white;
   font-weight: 500;
   margin-left: 40px;
   transition: .5s;
@@ -124,7 +146,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 300px;
+  width: 150px;
   height: auto;
 }
 
@@ -163,4 +185,90 @@ body {
 
 .hidden {
   display: none;
+}
+
+img[id^="button"] {
+  width: auto; /* Maintain aspect ratio */
+  height: auto;
+  cursor: pointer;
+  display: block; /* Ensure proper alignment */
+}
+
+img[id^="button"][src*="Star-Start"], 
+img[id^="button"][src*="Star-Pressed"] {
+  width: 100px; /* Star buttons are 100px */
+  height: 100px;
+}
+
+img[id^="button"][src*="Diamond-Start"], 
+img[id^="button"][src*="Diamond-Pressed"] {
+  width: 50px; /* Diamond buttons are 50px */
+  height: 50px;
+}
+.info-text {
+  display: none; /* Hidden by default */
+  left: 150px;
+  position: static; /* Prevent stacking by overlapping elements */
+  top: 150px; /* Adjust as needed to position the text */
+  left: 150px; /* Adjust as needed to position the text */
+  width: 80%; /* Take 80% of the screen width */
+  margin: 0 auto; /* Center horizontally */
+  padding: 0px;
+  box-sizing: border-box;
+  color: white;
+  z-index: 1; /* Ensure proper stacking order */
+}
+
+.info-text h1 {
+  font-size: 2.5em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.info-text p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+
+.info-text h2 {
+  font-weight: 200;
+  font-size: 2em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button-alignment {
+  display: flex;
+  flex-direction: column; /* Align buttons vertically */
+  align-items: center; /* Center align buttons horizontally */
+  position: absolute;
+  left: 20px; /* Keep buttons on the left side */
+  top: 100px; /* Starting position */
+}
+
+.button-alignment img[src*="Star-Start"], 
+.button-alignment img[src*="Star-Pressed"] {
+  margin-bottom: 15em; /* Add 15em gap for star buttons */
+}
+
+.button-alignment img[src*="Diamond-Start"], 
+.button-alignment img[src*="Diamond-Pressed"] {
+  margin-bottom: 5em; /* Add 5em gap for diamond buttons */
+}
+
+/* General section styling */
+.section {
+  margin: 50px 0; /* Add spacing between sections */
+  text-align: center; /* Center-align content */
+  padding: 20px;
+}
+
+.hero-banner {
+  padding: 50px 20px;
+  border-radius: 10px;
+}
+
+.curriculum, .skills, .future-professions {
+  padding: 30px 20px;
+  border-radius: 10px;
 }
