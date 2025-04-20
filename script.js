@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function createStar() {
-    const star = document.createElement("div");
+    const star = document.createElement("img");
     star.classList.add("star");
-    star.innerHTML = '⭐'; // Use the star emoji
+    star.src = "media/Star-Falling.png"; // Use the PNG image
+    star.alt = "Falling Star"; // Add alt text for accessibility
 
     const initialX = Math.random() * window.innerWidth;
     const initialY = Math.random() * window.innerHeight;
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     star.style.left = initialX + 'px';
     star.style.top = initialY + 'px';
 
-    let dx = (Math.random() - 0.5) * 1; //4 initially
+    let dx = (Math.random() - 0.5) * 1; // Adjust speed as needed
     let dy = (Math.random() - 0.5) * 1;
 
     starContainer.appendChild(star);
@@ -33,13 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
       const distance = Math.hypot(mouseX - starX, mouseY - starY);
 
       if (distance < 30) { // Adjust collision distance as needed
-        // Play sound
-        // starSound.play();
         const soundEffect = new Audio("media/star-sound.mp3");
         soundEffect.play();
 
-        // Change direction of the star
-        dx = (starX - mouseX) / 5; //10 initially
+        dx = (starX - mouseX) / 5;
         dy = (starY - mouseY) / 5;
       }
 
@@ -87,6 +85,27 @@ function toggleContent() {
   }
 }
 
+function playVideo(videoSrc, onEndSrc, loopOnEnd = true, mutedOnEnd = true) {
+  const video = document.getElementById("vtuberVideo");
+  const source = video.getElementsByTagName("source")[0];
+
+  // Set the new video source
+  source.src = videoSrc;
+  video.muted = false;
+  video.loop = false; // Set to false to allow the video to end
+  video.load(); // Reload the video with the new source
+  video.play(); // Play the video
+
+  // Add an event listener to switch back to the idle video after the video ends
+  video.onended = function () {
+    source.src = onEndSrc;
+    video.muted = mutedOnEnd;
+    video.loop = loopOnEnd; // Loop the idle animation if specified
+    video.load();
+    video.play();
+  };
+}
+
 function pressButtonX() {
   const buttonX = document.getElementById("buttonX");
   buttonX.src = "media/Star-Pressed.png"; // Change the image to 'Star-Pressed.png'
@@ -97,28 +116,11 @@ function pressButtonX() {
   infoText.style.display = "block"; // Make it visible
   infoText.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
 
-  // Change the video source
-  const video = document.getElementById("vtuberVideo");
-  const source = video.getElementsByTagName("source")[0];
-
-  // Set the first video source
-  source.src = "media/what-is-bmma.webm";
-  video.muted = false;
-  video.loop = false; // Set to false to allow the video to end
-  video.load(); // Reload the video with the new source
-  video.play(); // Play the video
-
-  // Add an event listener to switch back to the idle video after the first video ends
-  video.onended = function () {
-    source.src = "media/vtuber-idle-animation.mp4";
-    video.muted = true;
-    video.loop = true; // Loop the idle animation
-    video.load();
-    video.play();
-  };
+  // Play the "What is BMMA?" video and return to idle animation
+  playVideo("media/what-is-bmma.webm", "media/vtuber-idle-animation.mp4");
 }
 
-function pressButton(buttonId, textId) {
+function pressButton(buttonId, textId, videoSrc) {
   const button = document.getElementById(`button${buttonId}`);
   
   // Determine the correct pressed image based on the button type
@@ -134,70 +136,76 @@ function pressButton(buttonId, textId) {
   const textElement = document.getElementById(textId);
   textElement.style.display = "block"; // Make it visible
   textElement.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
+
+  // Play the specified video and return to idle animation
+  if (videoSrc) {
+    playVideo(videoSrc, "media/vtuber-idle-animation.mp4");
+  }
 }
 
 // Example usage for button A
 function pressButtonA() {
-  pressButton("A", "curriculumText");
+  pressButton("A", "curriculumText", "media/curriculum.webm");
 }
 
 function pressButtonB() {
-  pressButton("B", "yearOne");
+  pressButton("B", "yearOne", "media/curriculum-1st-year.webm");
 }
 
 function pressButtonC() {
-  pressButton("C", "yearTwo");
+  pressButton("C", "yearTwo", "media/curriculum-2nd-year.webm");
 }
 
 function pressButtonD() {
-  pressButton("D", "yearThree");
+  pressButton("D", "yearThree", "media/curriculum-3rd-year.webm");
 }
 
 function pressButtonE() {
-  pressButton("E", "yearFour");
+  pressButton("E", "yearFour", "media/curriculum-4th-year.webm");
 }
 
 function pressButtonF() {
-  pressButton("F", "skillsText");
+  pressButton("F", "skillsText", "media/skills.webm");
 }
 
 function pressButtonG() {
-  pressButton("G", "skillOne");
+  pressButton("G", "skillOne", "media/skills-photog.webm");
 }
 
 function pressButtonH() {
-  pressButton("H", "skillTwo");
+  pressButton("H", "skillTwo", "media/skills-digi-drawing.webm");
 }
 
 function pressButtonI() {
-  pressButton("I", "skillThree");
+  pressButton("I", "skillThree", "media/skills-graphic-design.webm");
 }
 
 function pressButtonJ() {
-  pressButton("J", "skillFour");
+  pressButton("J", "skillFour", "media/skills-3d-modeling.webm");
 }
 
 function pressButtonK() {
-  pressButton("K", "futureProfession");
+  pressButton("K", "futureProfession", "media/professions.webm");
 }
 
 function pressButtonL() {
-  pressButton("L", "professionOne");
+  pressButton("L", "professionOne", "media/profession-photographer-film.webm");
 }
 
 function pressButtonM() {
-  pressButton("M", "professionTwo");
+  pressButton("M", "professionTwo", "media/profession-illustrator.webm");
 }
 
 function pressButtonN() {
-  const buttonN = document.getElementById("buttonN");
-  buttonN.src = "media/Diamond-Pressed.png"; // Change the image to 'Diamond-Pressed.png'
+  pressButton("N", "professionThree", "media/profession-creatives.webm");
+  // const buttonN = document.getElementById("buttonN");
+  // buttonN.src = "media/Diamond-Pressed.png"; // Change the image to 'Diamond-Pressed.png'
 
-  const professionThree = document.getElementById("professionThree");
-  professionThree.style.display = "block"; // Make it visible
-  professionThree.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
-  const buttonO = document.getElementById("buttonO");
-  buttonO.style.display = "inline"; // Ensure button O is visible
+  // const professionThree = document.getElementById("professionThree");
+  // professionThree.style.display = "block"; // Make it visible
+  // professionThree.scrollIntoView({ behavior: "smooth" }); // Scroll to this section
+  // const buttonO = document.getElementById("buttonO");
+  // buttonO.style.display = "inline"; // Ensure button O is visible
 }
 
 function pressButtonO() {

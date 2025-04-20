@@ -168,7 +168,8 @@ body {
 
 .star {
   position: absolute;
-  font-size: 24px; /* Adjust the size of the star */
+  width: 30px; /* Adjust the width */
+  height: 30px; /* Adjust the height */
   animation: moveStar 5s linear infinite;
 }
 
