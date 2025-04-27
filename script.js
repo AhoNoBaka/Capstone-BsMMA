@@ -146,6 +146,7 @@ function pressButton(buttonId, textId, videoSrc) {
 // Example usage for button A
 function pressButtonA() {
   pressButton("A", "curriculumText", "media/curriculum.webm");
+  showModal('quizModal1');
 }
 
 function pressButtonB() {
@@ -154,6 +155,7 @@ function pressButtonB() {
 
 function pressButtonC() {
   pressButton("C", "yearTwo", "media/curriculum-2nd-year.webm");
+  showModal('quizModal2');
 }
 
 function pressButtonD() {
@@ -166,6 +168,7 @@ function pressButtonE() {
 
 function pressButtonF() {
   pressButton("F", "skillsText", "media/skills.webm");
+  showModal('quizModal3');
 }
 
 function pressButtonG() {
@@ -174,6 +177,7 @@ function pressButtonG() {
 
 function pressButtonH() {
   pressButton("H", "skillTwo", "media/skills-digi-drawing.webm");
+  showModal('quizModal4');
 }
 
 function pressButtonI() {
@@ -182,6 +186,7 @@ function pressButtonI() {
 
 function pressButtonJ() {
   pressButton("J", "skillFour", "media/skills-3d-modeling.webm");
+  showModal('quizModal5');
 }
 
 function pressButtonK() {
@@ -232,3 +237,39 @@ function showInfoText(textId) {
   textElement.style.display = 'block'; // Show the selected info-text
   textElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to the visible section
 }
+
+function showModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.remove("hidden");
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.add("hidden");
+}
+
+// Add hover behavior for wrong answers
+document.querySelectorAll(".quiz-choice.wrong").forEach(button => {
+  button.addEventListener("mouseover", () => {
+    const currentX = button.getBoundingClientRect().left; // Current X position
+    const currentY = button.getBoundingClientRect().top;  // Current Y position
+
+    // Generate random offsets within 50-75 pixels
+    const offsetX = (Math.random() > 0.5 ? 1 : -1) * (50 + Math.random() * 25);
+    const offsetY = (Math.random() > 0.5 ? 1 : -1) * (50 + Math.random() * 25);
+
+    // Calculate new positions
+    const newX = Math.min(
+      Math.max(currentX + offsetX, 0), // Ensure it doesn't go off the left edge
+      window.innerWidth - button.offsetWidth // Ensure it doesn't go off the right edge
+    );
+    const newY = Math.min(
+      Math.max(currentY + offsetY, 0), // Ensure it doesn't go off the top edge
+      window.innerHeight - button.offsetHeight // Ensure it doesn't go off the bottom edge
+    );
+
+    // Apply the new position
+    button.style.transform = `translate(${newX - currentX}px, ${newY - currentY}px)`;
+    button.style.transition = "transform 0.3s ease"; // Smooth movement
+  });
+});

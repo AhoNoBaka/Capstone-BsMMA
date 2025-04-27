@@ -38,10 +38,12 @@
   </div>
 
   <div class="vtuber-container">
-    <video id="vtuberVideo" autoplay loop muted>
-      <source src="media/vtuber-idle-animation.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="vtuber-border">
+      <video id="vtuberVideo" autoplay loop muted>
+        <source src="media/vtuber-idle-animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 
   <div class="star-container"></div>
@@ -139,6 +141,62 @@
     <div class="info-text" id="thankYou" style="display: none; left: 150px;">
       <h1>Thank you for you time!</h1>
       <p>Hope we see you soon ^_^</p>
+    </div>
+  </div>
+
+  <!-- Quiz Modals -->
+  <div id="quizModal1" class="quiz-modal hidden">
+    <div class="quiz-content">
+      <h2>The “MMA” in BMMA means Mixed Martial Arts.</h2>
+      <img src="media/Quiz1.png" alt="Quiz 1">
+      <div class="quiz-choices">
+        <button class="quiz-choice correct" onclick="closeModal('quizModal1')">False</button>
+        <button class="quiz-choice wrong">True</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal2" class="quiz-modal hidden">
+    <div class="quiz-content">
+      <h2>The light source is on:</h2>
+      <img src="media/Quiz2.png" alt="Quiz 2">
+      <div class="quiz-choices">
+        <button class="quiz-choice wrong">Right</button>
+        <button class="quiz-choice correct" onclick="closeModal('quizModal2')">Left</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal3" class="quiz-modal hidden">
+    <div class="quiz-content">
+      <h2>The light source is on:</h2>
+      <img src="media/Quiz3.png" alt="Quiz 3">
+      <div class="quiz-choices">
+        <button class="quiz-choice wrong">Your Left</button>
+        <button class="quiz-choice correct" onclick="closeModal('quizModal3')">Your Right</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal4" class="quiz-modal hidden">
+    <div class="quiz-content">
+      <h2>CMYK is the color profile used in printing.</h2>
+      <img src="media/Quiz4.png" alt="Quiz 4">
+      <div class="quiz-choices">
+        <button class="quiz-choice correct" onclick="closeModal('quizModal4')">True</button>
+        <button class="quiz-choice wrong">False</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal5" class="quiz-modal hidden">
+    <div class="quiz-content">
+      <h2>RGB is the color profile used in screens or LEDs.</h2>
+      <img src="media/Quiz5.png" alt="Quiz 5">
+      <div class="quiz-choices">
+        <button class="quiz-choice wrong">False</button>
+        <button class="quiz-choice correct" onclick="closeModal('quizModal5')">True</button>
+      </div>
     </div>
   </div>
 

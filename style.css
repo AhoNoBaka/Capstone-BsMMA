@@ -155,6 +155,33 @@ body {
   height: 100%;
 }
 
+.vtuber-border {
+  position: relative;
+  display: inline-block;
+}
+
+.vtuber-border::after {
+  content: '';
+  position: absolute;
+  top: -115px;
+  left: -100px;
+  width: 200%;
+  height: 200%;
+  background: url('media/Stella-border.png') no-repeat center center;
+  background-size: contain;
+  pointer-events: none; /* Ensure the border doesn't block interactions with the video */
+  z-index: 1; /* Place the border in front of the video */
+}
+
+.vtuber-border video {
+  right: 70px;
+  display: block;
+  width: 150%;
+  height: 150%;
+  z-index: 0; /* Ensure the video is behind the border */
+  position: relative;
+}
+
 .star-container {
   position: fixed;
   top: 0;
@@ -272,4 +299,80 @@ img[id^="button"][src*="Diamond-Pressed"] {
 .curriculum, .skills, .future-professions {
   padding: 30px 20px;
   border-radius: 10px;
+}
+
+/* Quiz Modal Styles */
+.quiz-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.quiz-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+
+.quiz-content img {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+/* Ensure quiz images fit within the modal */
+.quiz-content img {
+  max-width: 100%; /* Ensure the image does not exceed the modal width */
+  max-height: 70vh; /* Ensure the image does not exceed 70% of the viewport height */
+  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Maintain aspect ratio */
+  margin: 20px 0; /* Add spacing around the image */
+}
+
+.quiz-choices {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.quiz-choice {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.quiz-choice:hover {
+  background-color: #0056b3;
+}
+
+.quiz-choice.wrong:hover {
+  position: absolute;
+  animation: moveAround 1s infinite;
+}
+
+@keyframes moveAround {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(50px, -50px); }
+  50% { transform: translate(-50px, 50px); }
+  75% { transform: translate(50px, 50px); }
+  100% { transform: translate(-50px, -50px); }
+}
+
+.hidden {
+  display: none;
 }
