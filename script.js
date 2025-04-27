@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (distance < 30) { // Adjust collision distance as needed
         const soundEffect = new Audio("media/star-sound.mp3");
+        soundEffect.volume = 0.1; // Set volume to 10%
         soundEffect.play();
 
         dx = (starX - mouseX) / 5;
