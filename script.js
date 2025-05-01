@@ -34,8 +34,25 @@ document.addEventListener("DOMContentLoaded", function() {
       const distance = Math.hypot(mouseX - starX, mouseY - starY);
 
       if (distance < 30) { // Adjust collision distance as needed
-        const soundEffect = new Audio("media/star-sound.mp3");
-        soundEffect.volume = 0.1; // Set volume to 10%
+        // Randomly select a sound effect
+        const sounds = [
+          { src: "media/star-sound.mp3", volume: 0.1 },
+          { src: "media/star-sound-1.mp3", volume: 0.1 },
+          { src: "media/star-sound-2.mp3", volume: 0.1 },
+          { src: "media/star-pipe.mp3", volume: 3.0, chance: 0.05 } // 5% chance
+        ];
+
+        const random = Math.random();
+        let selectedSound = sounds[0]; // Default sound
+
+        if (random < 0.05) {
+          selectedSound = sounds[3]; // star-pipe
+        } else {
+          selectedSound = sounds[Math.floor(Math.random() * 3)]; // Other sounds
+        }
+
+        const soundEffect = new Audio(selectedSound.src);
+        soundEffect.volume = selectedSound.volume;
         soundEffect.play();
 
         dx = (starX - mouseX) / 5;
@@ -247,6 +264,53 @@ function showModal(modalId) {
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.classList.add("hidden");
+
+  // Create a modal background overlay
+  const modalBg = document.createElement("div");
+  modalBg.style.position = "fixed";
+  modalBg.style.top = "0";
+  modalBg.style.left = "0";
+  modalBg.style.width = "100%";
+  modalBg.style.height = "100%";
+  modalBg.style.backgroundColor = "rgba(0, 0, 0, 0.8)"; // Semi-transparent black
+  modalBg.style.zIndex = "1000";
+
+  // Create a container for the "correct" image with a white background
+  const correctContainer = document.createElement("div");
+  correctContainer.style.position = "fixed";
+  correctContainer.style.top = "50%";
+  correctContainer.style.left = "50%";
+  correctContainer.style.transform = "translate(-50%, -50%)";
+  correctContainer.style.backgroundColor = "white"; // White background
+  correctContainer.style.padding = "20px";
+  correctContainer.style.borderRadius = "10px";
+  correctContainer.style.textAlign = "center";
+  correctContainer.style.zIndex = "1001";
+  correctContainer.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+
+  // Display the "correct" image
+  const correctImage = document.createElement("img");
+  correctImage.src = "media/quiz-correct.PNG";
+  correctImage.alt = "Correct Answer";
+  correctImage.style.width = "300px"; // Adjust size as needed
+  correctImage.style.height = "auto";
+
+  // Append the image to the container
+  correctContainer.appendChild(correctImage);
+
+  // Append the modal background and container to the body
+  document.body.appendChild(modalBg);
+  document.body.appendChild(correctContainer);
+
+  // Play the "correct" sound
+  const correctSound = new Audio("media/correct-sound.mp3");
+  correctSound.play();
+
+  // Remove the image, container, and modal background after 0.5 seconds
+  setTimeout(() => {
+    correctContainer.remove();
+    modalBg.remove();
+  }, 500);
 }
 
 // Add hover behavior for wrong answers

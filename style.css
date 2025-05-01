@@ -26,7 +26,7 @@ img {
 body {
   overflow-y: auto; /* Allow vertical scrolling */
   padding-top: 80px;
-  background-image: url('media/background-long.png');
+  background-image: url('media/background-long-text.png');
   background-size: contain; /* Ensures the width is bound to the viewport */
   background-repeat: no-repeat;
   background-size: 100vw auto;
