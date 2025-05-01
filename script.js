@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
           { src: "media/star-sound.mp3", volume: 0.1 },
           { src: "media/star-sound-1.mp3", volume: 0.1 },
           { src: "media/star-sound-2.mp3", volume: 0.1 },
-          { src: "media/star-pipe.mp3", volume: 3.0, chance: 0.05 } // 5% chance
+          { src: "media/star-pipe.mp3", volume: 1.0, chance: 0.02 }
         ];
 
         const random = Math.random();
@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const soundEffect = new Audio(selectedSound.src);
         soundEffect.volume = selectedSound.volume;
+
+        // Slow down the playback rate for star-pipe.mp3
+        if (selectedSound.src.includes("star-pipe.mp3")) {
+          soundEffect.playbackRate = 0.75; // Adjust the rate as needed (e.g., 0.5 for half speed)
+        }
+
         soundEffect.play();
 
         dx = (starX - mouseX) / 5;
