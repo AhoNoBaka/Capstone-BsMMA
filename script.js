@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
           { src: "media/star-sound.mp3", volume: 0.1 },
           { src: "media/star-sound-1.mp3", volume: 0.1 },
           { src: "media/star-sound-2.mp3", volume: 0.1 },
-          { src: "media/star-pipe.mp3", volume: 1.0, chance: 0.02 }
+          { src: "media/star-pipe.mp3", volume: 0.5, chance: 0.02 }
         ];
 
         const random = Math.random();
@@ -310,6 +310,7 @@ function closeModal(modalId) {
 
   // Play the "correct" sound
   const correctSound = new Audio("media/correct-sound.mp3");
+  correctSound.volume = 0.5; // Set the volume to 0.5
   correctSound.play();
 
   // Remove the image, container, and modal background after 0.5 seconds
